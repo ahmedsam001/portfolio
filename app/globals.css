@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────── */
+:root {
+  --color-bg-base:        #FAF6EC;
+  --color-bg-alt:         #F3EDDF;
+  --color-surface:        #FFFFFF;
+  --color-border:         #E8E1D0;
+  --color-primary:        #0F6E5C;
+  --color-primary-dark:   #0B5548;
+  --color-primary-tint:   #E4F2ED;
+  --color-accent:         #E8792E;
+  --color-accent-dark:    #C7601E;
+  --color-accent-tint:    #FCE9D9;
+  --color-text-primary:   #1F2A22;
+  --color-text-secondary: #55604F;
+  --color-text-on-dark:   #FAF6EC;
+  --color-focus-ring:     #0F6E5C;
+}
+
+/* ── Base Reset ───────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Focus Ring ────────────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Typography ───────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+/* ── Scroll offset for fixed nav ─────────────── */
+[id] { scroll-margin-top: 80px; }
+
+/* ── Pipeline animation ───────────────────────── */
+@keyframes flowPacket {
+  0%   { stroke-dashoffset: 120; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { stroke-dashoffset: 0;   opacity: 0; }
+}
+
+@keyframes nodeActivate {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(15,110,92,0)); }
+  50%       { filter: drop-shadow(0 0 8px rgba(15,110,92,0.6)); }
+}
+
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseRingAnim {
+  0%   { transform: scale(1);    opacity: 0.55; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+
+@keyframes packetTravel {
+  0%   { transform: translateX(-6px); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translateX(calc(100% + 6px)); opacity: 0; }
+}
+
+/* ── Card hover lift ─────────────────────────── */
+.card-hover {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px 0 rgba(15,110,92,0.13), 0 2px 8px 0 rgba(0,0,0,0.07);
+}
+
+/* ── Hero Data Flow ──────────────────────────── */
+@keyframes heroReveal {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-node {
+  opacity: 0;
+  animation: heroReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroFlowDashH {
+  from { stroke-dashoffset: 10; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes heroFlowDashV {
+  from { stroke-dashoffset: 10; }
+  to { stroke-dashoffset: 0; }
+}
+
+.hero-connector-line {
+  stroke-dasharray: 4 6;
+  animation: heroFlowDashH 0.8s linear infinite;
+}
+
+.hero-connector-line-vertical {
+  stroke-dasharray: 4 6;
+  animation: heroFlowDashV 0.8s linear infinite;
+}
+
+@keyframes heroNodePulseTeal {
+  0%, 100% { box-shadow: 0 0 0 rgba(15,110,92,0); }
+  50% { box-shadow: 0 0 12px rgba(15,110,92,0.25); }
+}
+
+@keyframes heroNodePulseOrange {
+  0%, 100% { box-shadow: 0 0 0 rgba(232,121,46,0); }
+  50% { box-shadow: 0 0 12px rgba(232,121,46,0.3); }
+}
+
+.hero-node-active {
+  animation: heroNodePulseTeal 3s ease-in-out infinite;
+}
+
+.hero-node-active.node-orange {
+  animation: heroNodePulseOrange 3s ease-in-out infinite;
+}
+
+@keyframes popoverIn {
+  from { opacity: 0; transform: translate(-50%, 5px) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.hero-popover {
+  animation: popoverIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Reduced motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    transition-property: opacity, color, background-color, border-color !important;
+  }
+  html { scroll-behavior: auto; }
+  .pipeline-packet { display: none !important; }
+  .arch-connector { animation: none !important; stroke-dasharray: none !important; }
+  .hero-node { animation: none !important; opacity: 1 !important; }
+  .hero-connector-line, .hero-connector-line-vertical { animation: none !important; stroke-dasharray: none !important; }
+  .hero-node-active { animation: none !important; }
+  .hero-popover { animation: none !important; opacity: 1 !important; }
+}
+
+/* ── Tech pill monospace style ───────────────── */
+.tech-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Pipeline connector line ─────────────────── */
+.pipeline-line {
+  position: relative;
+  height: 2px;
+  background: var(--color-border);
+  overflow: visible;
+}
+
+.pipeline-packet {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 6px rgba(15,110,92,0.4);
+  animation: packetTravel 2.8s linear infinite;
+}
+
+.pipeline-packet:nth-child(2) { animation-delay: 1s; }
+.pipeline-packet:nth-child(3) { animation-delay: 2s; }
+
+/* ── Interactive arch flowing line ───────────── */
+.arch-connector {
+  stroke-dasharray: 6 4;
+  stroke-dashoffset: 0;
+  animation: archFlow 1.8s linear infinite;
+}
+
+@keyframes archFlow {
+  to { stroke-dashoffset: -20; }
+}
+
+/* ── Tooltip panel ───────────────────────────── */
+.tooltip-panel {
+  animation: fadeUpIn 0.22s ease-out both;
+}
+
+/* ── Mobile menu slide ───────────────────────── */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu {
+  animation: slideDown 0.2s ease-out both;
+}
+
+
+/* ── Interactive Architecture ────────────────── */
+@keyframes archFlowPacket {
+  to { stroke-dashoffset: -30; }
+}
+
+.arch-path-stream {
+  stroke-dasharray: 6 24;
+  animation: archFlowPacket 0.6s linear infinite;
+  opacity: 0.8;
+}
+
+.arch-path-batch {
+  stroke-dasharray: 6 24;
+  animation: archFlowPacket 2s linear infinite;
+  opacity: 0.8;
+}
+
+.arch-path-base {
+  stroke: var(--color-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.arch-path-base.active {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-path-stream, .arch-path-batch {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* Custom thin scrollbar for horizontal diagram areas */
+.arch-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 110, 92, 0.2) transparent;
+}
+.arch-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.arch-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.arch-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 110, 92, 0.2);
+  border-radius: 4px;
+}
+.arch-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(15, 110, 92, 0.4);
+}
+
+/* Data Pipeline Animated Background */
+@keyframes flow-bg {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-flow-bg {
+  animation: flow-bg linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-flow-bg {
+    animation: none;
+    display: none;
+  }
+}
