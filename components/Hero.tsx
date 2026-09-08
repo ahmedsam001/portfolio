@@ -26,10 +26,6 @@ export default function Hero() {
                 id="hero-heading"
                 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-text-primary leading-tight"
               >
-                {profile.displayName}
-                <span className="block text-text-secondary font-semibold text-xl sm:text-2xl mt-1">
-                  Fathi
-                </span>
                 {profile.name}
               </h1>
 

@@ -285,18 +285,87 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Data Pipeline Animated Background */
+@keyframes flow-forward {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes flow-reverse {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 100; }
+}
+
 @keyframes flow-bg {
   from { stroke-dashoffset: 100; }
   to { stroke-dashoffset: 0; }
+}
+
+@keyframes pipe-pulse-active {
+  0%, 100% { stroke-opacity: 0.08; }
+  50% { stroke-opacity: 0.22; }
+}
+
+@keyframes node-pulse-halo {
+  0%, 75%, 100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  82% {
+    opacity: 0.4;
+    transform: scale(1.9);
+  }
+  90% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+@keyframes node-pulse-brighten {
+  0%, 75%, 100% {
+    opacity: 0.25;
+  }
+  82% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.25;
+  }
+}
+
+.animate-flow-forward {
+  animation: flow-forward linear infinite;
+}
+
+.animate-flow-reverse {
+  animation: flow-reverse linear infinite;
 }
 
 .animate-flow-bg {
   animation: flow-bg linear infinite;
 }
 
+.animate-pipe-pulse {
+  animation: pipe-pulse-active ease-in-out infinite;
+}
+
+.animate-node-halo {
+  animation: node-pulse-halo ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.animate-node-brighten {
+  animation: node-pulse-brighten ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-flow-bg {
-    animation: none;
-    display: none;
+  .animate-flow-forward,
+  .animate-flow-reverse,
+  .animate-flow-bg,
+  .animate-pipe-pulse,
+  .animate-node-halo,
+  .animate-node-brighten {
+    animation: none !important;
+    display: none !important;
   }
 }
