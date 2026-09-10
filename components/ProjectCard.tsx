@@ -124,12 +124,12 @@ export default function ProjectCard({ project, delay = 0 }: Props) {
         )}
 
         {/* Actions */}
-        <div className="flex flex-wrap gap-2.5 pt-3 border-t border-border">
+        <div className="flex flex-col xs:flex-row flex-wrap gap-2.5 pt-3 border-t border-border">
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl border-2 border-border hover:border-primary text-text-secondary hover:text-primary font-heading font-semibold text-sm transition-all duration-200 hover:bg-primary-tint"
+            className="flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl border-2 border-border hover:border-primary text-text-secondary hover:text-primary font-heading font-semibold text-sm transition-all duration-200 hover:bg-primary-tint"
             aria-label={`View ${project.shortTitle} on GitHub`}
           >
             <Github size={14} aria-hidden="true" />
@@ -137,7 +137,7 @@ export default function ProjectCard({ project, delay = 0 }: Props) {
           </a>
           <a
             href="#architecture"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent hover:bg-accent-dark text-text-on-dark font-heading font-semibold text-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+            className="flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-accent hover:bg-accent-dark text-text-on-dark font-heading font-semibold text-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
             aria-label={`View full architecture for ${project.shortTitle}`}
           >
             <ExternalLink size={14} aria-hidden="true" />

@@ -128,17 +128,17 @@ export default function ArchitectureDiagram({ project, compact = false }: Props)
         className="w-full overflow-x-auto arch-scrollbar pb-2"
       >
         <div
-          className={`flex items-stretch gap-0 ${compact ? "min-w-[520px]" : "min-w-[640px]"}`}
+          className={`flex items-stretch gap-0 ${compact ? "min-w-[420px]" : "min-w-[580px]"}`}
         >
         {layers.map((layer, li) => {
           const colors = layerColors[layer.key];
           return (
-            <div key={layer.key} className="flex items-center flex-1">
+            <div key={layer.key} className="flex items-center flex-1 min-w-0">
               {/* Column */}
-              <div className="flex-1 flex flex-col gap-1.5">
+              <div className="flex-1 flex flex-col gap-1.5 min-w-0">
                 {/* Column header */}
                 <p
-                  className="text-center text-[10px] font-mono font-medium uppercase tracking-widest mb-1"
+                  className="text-center text-[10px] font-mono font-medium uppercase tracking-widest mb-1 truncate"
                   style={{ color: colors.text }}
                 >
                   {layer.label}
@@ -148,21 +148,21 @@ export default function ArchitectureDiagram({ project, compact = false }: Props)
                 {layer.nodes.map((node) => (
                   <div
                     key={node.id}
-                    className="mx-1 rounded-lg border px-2 py-1.5 text-center shadow-sm"
+                    className="mx-1 rounded-lg border px-2 py-1.5 text-center shadow-sm min-w-0"
                     style={{
                       backgroundColor: colors.bg,
                       borderColor: colors.border,
                     }}
                   >
                     <p
-                      className={`font-mono font-semibold leading-tight ${compact ? "text-[10px]" : "text-[11px]"}`}
+                      className={`font-mono font-semibold leading-tight break-words ${compact ? "text-[10px]" : "text-[11px]"}`}
                       style={{ color: colors.text }}
                     >
                       {node.label}
                     </p>
                     {node.sublabel && (
                       <p
-                        className={`font-mono leading-tight opacity-70 mt-0.5 ${compact ? "text-[9px]" : "text-[10px]"}`}
+                        className={`font-mono leading-tight opacity-70 mt-0.5 break-words ${compact ? "text-[9px]" : "text-[10px]"}`}
                         style={{ color: colors.text }}
                       >
                         {node.sublabel}

@@ -138,16 +138,16 @@ export default function InteractiveArchitecture() {
       <button
         key={node.id}
         onClick={() => setActiveNode(activeNode?.id === node.id ? null : node)}
-        className={`w-full max-w-[280px] p-3 border-2 rounded-xl flex items-center gap-3 bg-surface transition-all duration-200 text-left
-        ${isOrange ? 'border-accent/30 hover:border-accent' : isEmp ? 'border-primary bg-primary text-text-on-dark shadow-md' : 'border-primary/20 hover:border-primary'}
+        className={`w-full p-3 border-2 rounded-xl flex items-center gap-3 bg-surface transition-all duration-200 text-left
+        ${isOrange ? 'border-accent/30 hover:border-accent' : isEmp ? 'border-primary shadow-sm hover:border-primary-dark' : 'border-primary/20 hover:border-primary'}
         ${activeNode?.id === node.id ? (isOrange ? 'ring-4 ring-accent/30' : 'ring-4 ring-primary/30') : ''}`}
       >
-        <div className={`p-2 rounded-lg ${isOrange ? 'bg-accent-tint text-accent' : isEmp ? 'bg-text-on-dark text-primary' : 'bg-primary-tint text-primary'}`}>
+        <div className={`flex-shrink-0 p-2 rounded-lg ${isOrange ? 'bg-accent-tint text-accent' : 'bg-primary-tint text-primary'}`}>
           {node.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <p className={`font-heading font-bold text-sm leading-tight ${isEmp ? 'text-text-on-dark' : 'text-text-primary'}`}>{node.label}</p>
-          <p className={`font-mono text-[10px] mt-0.5 leading-tight ${isOrange ? 'text-accent/90' : isEmp ? 'text-text-on-dark/80' : 'text-primary/70'}`}>{node.sub}</p>
+          <p className="font-heading font-bold text-sm leading-tight text-text-primary">{node.label}</p>
+          <p className={`font-mono text-[10px] mt-0.5 leading-tight ${isOrange ? 'text-accent/90' : 'text-primary/70'}`}>{node.sub}</p>
         </div>
       </button>
     );
@@ -173,10 +173,10 @@ export default function InteractiveArchitecture() {
 
         {/* Tabs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-12">
-          <div className="bg-surface p-1.5 rounded-2xl inline-flex border border-border shadow-sm">
+          <div className="w-full sm:w-auto bg-surface p-1.5 rounded-2xl inline-flex border border-border shadow-sm">
             <button
               onClick={() => { setActiveTab(0); setActiveNode(null); }}
-              className={`px-6 py-3 rounded-xl font-heading font-bold text-[15px] transition-all duration-300 ${
+              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-[13px] sm:text-[15px] transition-all duration-300 ${
                 activeTab === 0 ? "bg-primary text-text-on-dark shadow-md" : "text-text-secondary hover:text-text-primary hover:bg-bg-base"
               }`}
             >
@@ -184,7 +184,7 @@ export default function InteractiveArchitecture() {
             </button>
             <button
               onClick={() => { setActiveTab(1); setActiveNode(null); }}
-              className={`px-6 py-3 rounded-xl font-heading font-bold text-[15px] transition-all duration-300 ${
+              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl font-heading font-bold text-[13px] sm:text-[15px] transition-all duration-300 ${
                 activeTab === 1 ? "bg-primary text-text-on-dark shadow-md" : "text-text-secondary hover:text-text-primary hover:bg-bg-base"
               }`}
             >
@@ -339,37 +339,37 @@ export default function InteractiveArchitecture() {
 
           {activeTab === 0 && (
             <div className="flex flex-col gap-8 animate-in fade-in zoom-in-95 duration-500">
-              <div className="bg-surface p-5 rounded-2xl border border-border shadow-sm">
+              <div className="bg-surface p-4 sm:p-5 rounded-2xl border border-border shadow-sm overflow-hidden">
                 <h3 className="text-xs font-mono font-bold text-text-secondary uppercase tracking-widest mb-6 text-center border-b border-border pb-3">Historical Batch Flow</h3>
-                <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-col items-stretch gap-3">
                   {[healthcareNodes.synthea, healthcareNodes.snow, healthcareNodes.sparkBatch, healthcareNodes.medallion].map((n, i) => (
                     <React.Fragment key={n.id}>
                       {renderMobileNode(n)}
-                      {i < 3 && <ArrowDown size={20} className="text-primary/30" />}
+                      {i < 3 && <ArrowDown size={20} className="text-primary/30 self-center" />}
                     </React.Fragment>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-surface p-5 rounded-2xl border border-border shadow-sm">
+              <div className="bg-surface p-4 sm:p-5 rounded-2xl border border-border shadow-sm overflow-hidden">
                 <h3 className="text-xs font-mono font-bold text-text-secondary uppercase tracking-widest mb-6 text-center border-b border-border pb-3">Real-Time Event Flow</h3>
-                <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-col items-stretch gap-3">
                   {[healthcareNodes.event, healthcareNodes.kafka, healthcareNodes.sparkStream, healthcareNodes.realtime].map((n, i) => (
                     <React.Fragment key={n.id}>
                       {renderMobileNode(n)}
-                      {i < 3 && <ArrowDown size={20} className="text-primary/30" />}
+                      {i < 3 && <ArrowDown size={20} className="text-primary/30 self-center" />}
                     </React.Fragment>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-gradient-to-b from-surface to-bg-base p-5 rounded-2xl border-2 border-primary/20 shadow-md relative overflow-hidden">
-                <h3 className="text-xs font-mono font-bold text-primary uppercase tracking-widest mb-6 text-center border-b border-primary/20 pb-3">Convergence & Output</h3>
-                <div className="flex flex-col items-center gap-3 relative z-10">
+              <div className="bg-gradient-to-b from-surface to-bg-base p-4 sm:p-5 rounded-2xl border-2 border-primary/20 shadow-md relative overflow-hidden">
+                <h3 className="text-xs font-mono font-bold text-primary uppercase tracking-widest mb-6 text-center border-b border-primary/20 pb-3">Convergence &amp; Output</h3>
+                <div className="flex flex-col items-stretch gap-3 relative z-10">
                   {[healthcareNodes.patient, healthcareNodes.risk, healthcareNodes.dashboard].map((n, i) => (
                     <React.Fragment key={n.id}>
                       {renderMobileNode(n)}
-                      {i < 2 && <ArrowDown size={20} className={n.type === 'orange' ? 'text-accent/40' : 'text-primary/40'} />}
+                      {i < 2 && <ArrowDown size={20} className={`self-center ${n.type === 'orange' ? 'text-accent/40' : 'text-primary/40'}`} />}
                     </React.Fragment>
                   ))}
                 </div>
@@ -379,25 +379,25 @@ export default function InteractiveArchitecture() {
 
           {activeTab === 1 && (
             <div className="flex flex-col gap-8 animate-in fade-in zoom-in-95 duration-500">
-               <div className="bg-surface p-5 rounded-2xl border border-border shadow-sm">
+               <div className="bg-surface p-4 sm:p-5 rounded-2xl border border-border shadow-sm overflow-hidden">
                  <h3 className="text-xs font-mono font-bold text-text-secondary uppercase tracking-widest mb-6 text-center border-b border-border pb-3">Airbnb Batch ELT</h3>
-                 <div className="flex flex-col items-center gap-3">
+                 <div className="flex flex-col items-stretch gap-3">
                    {[airbnbNodes.s3, airbnbNodes.snowStage, airbnbNodes.staging, airbnbNodes.bronze, airbnbNodes.gold, airbnbNodes.obt].map((n, i) => (
                       <React.Fragment key={n.id}>
                         {renderMobileNode(n)}
-                        {i < 5 && <ArrowDown size={20} className={n.type === 'orange' ? 'text-accent/40' : 'text-primary/30'} />}
+                        {i < 5 && <ArrowDown size={20} className={`self-center ${n.type === 'orange' ? 'text-accent/40' : 'text-primary/30'}`} />}
                       </React.Fragment>
                    ))}
                  </div>
                </div>
 
-               <div className="bg-surface p-5 rounded-2xl border border-border shadow-sm">
+               <div className="bg-surface p-4 sm:p-5 rounded-2xl border border-border shadow-sm overflow-hidden">
                  <h3 className="text-xs font-mono font-bold text-text-secondary uppercase tracking-widest mb-6 text-center border-b border-border pb-3">Retail BI Pipeline</h3>
-                 <div className="flex flex-col items-center gap-3">
+                 <div className="flex flex-col items-stretch gap-3">
                    {[retailNodes.raw, retailNodes.bronze, retailNodes.silver, retailNodes.gold, retailNodes.analytics].map((n, i) => (
                       <React.Fragment key={n.id}>
                         {renderMobileNode(n)}
-                        {i < 4 && <ArrowDown size={20} className={n.type === 'orange' ? 'text-accent/40' : 'text-primary/30'} />}
+                        {i < 4 && <ArrowDown size={20} className={`self-center ${n.type === 'orange' ? 'text-accent/40' : 'text-primary/30'}`} />}
                       </React.Fragment>
                    ))}
                  </div>

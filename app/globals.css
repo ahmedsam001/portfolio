@@ -301,34 +301,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pipe-pulse-active {
-  0%, 100% { stroke-opacity: 0.08; }
-  50% { stroke-opacity: 0.22; }
+  0%, 100% { stroke-opacity: 0.10; }
+  50% { stroke-opacity: 0.28; }
 }
 
 @keyframes node-pulse-halo {
-  0%, 75%, 100% {
+  0%, 72%, 100% {
     opacity: 0;
     transform: scale(0.9);
   }
-  82% {
-    opacity: 0.4;
-    transform: scale(1.9);
+  80% {
+    opacity: 0.55;
+    transform: scale(1.8);
   }
   90% {
     opacity: 0;
-    transform: scale(2.5);
+    transform: scale(2.6);
   }
 }
 
 @keyframes node-pulse-brighten {
-  0%, 75%, 100% {
-    opacity: 0.25;
+  0%, 72%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
   }
-  82% {
-    opacity: 0.8;
+  80% {
+    opacity: 0.95;
+    transform: scale(1.35);
   }
   90% {
-    opacity: 0.25;
+    opacity: 0.35;
+    transform: scale(1);
   }
 }
 
@@ -356,6 +359,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-node-brighten {
   animation: node-pulse-brighten ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
