@@ -40,7 +40,7 @@ const contacts: ContactButton[] = [
   },
   {
     label: "Send Email",
-    sublabel: "ahmedssami@gmail.com",
+    sublabel: "ahmedssami001@gmail.com",
     href: profile.links.email,
     icon: <Mail size={24} aria-hidden="true" />,
     variant: "cta",

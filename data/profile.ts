@@ -16,7 +16,7 @@ export const profile = {
     github: "https://github.com/ahmedsam001",
     linkedin: "https://www.linkedin.com/in/ahmed-sami-fath/",
     whatsapp: "https://wa.me/201152887590",
-    email: "mailto:ahmedssami@gmail.com",
+    email: "mailto:ahmedssami001@gmail.com",
     cv: "/assets/Ahmed_Sami_Fathi_CV.pdf",
   },
 } as const;

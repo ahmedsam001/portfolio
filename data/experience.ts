@@ -17,11 +17,10 @@ export const timeline: TimelineEntry[] = [
   {
     id: "nti",
     type: "training",
-    period: "Aug 2026 — Present",
+    period: "Aug 2026 — Sep 2026",
     title: "Big Data Analysis Intern",
     organization: "National Telecommunication Institute (NTI)",
     location: "Egypt",
-    current: true,
     description: [
       "Built ingestion and streaming data pipelines with Kafka and Flume.",
       "Processed large-scale datasets using MapReduce, Apache Spark, and Apache Flink.",
