@@ -14,20 +14,7 @@ export interface TimelineEntry {
 }
 
 export const timeline: TimelineEntry[] = [
-  {
-    id: "nti",
-    type: "training",
-    period: "Aug 2026 — Sep 2026",
-    title: "Big Data Analysis Intern",
-    organization: "National Telecommunication Institute (NTI)",
-    location: "Egypt",
-    description: [
-      "Built ingestion and streaming data pipelines with Kafka and Flume.",
-      "Processed large-scale datasets using MapReduce, Apache Spark, and Apache Flink.",
-      "Designed data warehousing solutions and optimized complex queries using Apache Hive.",
-      "Administered Linux-based distributed environments and Hadoop clusters (YARN, Zookeeper).",
-    ],
-  },
+
   {
     id: "depi",
     type: "training",
@@ -43,6 +30,21 @@ export const timeline: TimelineEntry[] = [
       "Delivered a technical capstone project simulating a production analytics environment.",
     ],
   },
+  {
+    id: "nti",
+    type: "training",
+    period: "Aug 2026 — Sep 2026",
+    title: "Big Data Analysis Intern",
+    organization: "National Telecommunication Institute (NTI)",
+    location: "Egypt",
+    description: [
+      "Built ingestion and streaming data pipelines with Kafka and Flume.",
+      "Processed large-scale datasets using MapReduce, Apache Spark, and Apache Flink.",
+      "Designed data warehousing solutions and optimized complex queries using Apache Hive.",
+      "Administered Linux-based distributed environments and Hadoop clusters (YARN, Zookeeper).",
+    ],
+  },
+
   {
     id: "sinai-uni",
     type: "education",
